@@ -18,9 +18,9 @@ resource "aws_security_group" "app_sg" {
 
   # Allow frontend React port
   ingress {
-    from_port   = 3000
-    to_port     = 3000
-    protocol    = "tcp"
+    from_port   = 80
+    to_port     = 80
+    protocol    = "http"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
@@ -91,9 +91,9 @@ resource "aws_instance" "backend" {
 
 # Output the public IPs
 output "frontend_public_ip" {
-  value = aws_instance.frontend.public_ip
+  value = aws_instance.frontend.public_dns
 }
 
 output "backend_public_ip" {
-  value = aws_instance.backend.public_ip
+  value = aws_instance.backend.public_dns
 }
